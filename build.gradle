@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+java {
+    toolchain {
+//        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(22)
+    }
+}
+
+sourceSets {
+    main {
+        output.setResourcesDir(java.classesDirectory)
+    }
+}
+
+dependencies {
+    implementation files('lib/citygml4j-core-3.2.0.jar')
+    implementation files('lib/citygml4j-xml-3.2.0.jar')
+//    annotationProcessor project(':citygml4j-xml')
+    annotationProcessor files('lib/citygml4j-xml-3.2.0.jar')
+
+    implementation files('lib/xml-objects-1.1.0.jar')
+    implementation files('lib/xal-objects-1.1.0.jar')
+    implementation files('lib/gml-objects-1.1.0.jar')
+    implementation files('lib/classindex-3.13.0.jar')
+    implementation files('lib/xsom-4.0.4.jar')
+
+    annotationProcessor files('lib/xml-objects-1.1.0.jar')
+    annotationProcessor files('lib/xal-objects-1.1.0.jar')
+    annotationProcessor files('lib/gml-objects-1.1.0.jar')
+    annotationProcessor files('lib/classindex-3.13.0.jar')
+    annotationProcessor files('lib/xsom-4.0.4.jar')
+
+//    annotationProcessor files('lib/javax.inject-1.jar')
+}
+
+apply from: 'run-iur_uro_v3_0_ade.gradle'
+apply from: 'copy-iur_uro_v3_0_ade.gradle'
+
+clean.dependsOn(cleanOutput)
